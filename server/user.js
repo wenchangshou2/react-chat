@@ -68,8 +68,10 @@ Router.post('/register', function(req, res) {
   })
 })
 Router.get('/getmsglist',function(req,res){
-  const user = req.cookies.user
-  Chat.find({'$or':[{from:user,to:user}]},function(err,doc){
+  const user = req.cookies.userid
+  console.log('cookie',user)
+  // Chat.find({'$or':[{from:user,to:user}]},function(err,doc){
+  Chat.find({},function(err,doc){
     if(!err){
       return res.json({
         code:0,msgs:doc

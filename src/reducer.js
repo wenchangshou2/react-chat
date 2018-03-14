@@ -13,5 +13,6 @@ import {
 } from './redux/chat.redux'
 export default combineReducers({
   user,
-  chatuser
+  chatuser,
+  chat
 })

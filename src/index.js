@@ -17,6 +17,7 @@ import BossInfo from './container/bossinfo/bossinfo.jsx'
 import GeniusInfo from './container/geniusinfo/geniusinfo.jsx'
 import Dashboard from './container/dashboard/dashboard.jsx'
 import User from './component/user/user.jsx'
+import Chat from './component/chat/chat.jsx'
 import reducers from './reducer';
 import './config'
 import { createStore, applyMiddleware, compose } from 'redux'
@@ -38,7 +39,7 @@ ReactDom.render(
       <Route path='/login' component={Login}></Route>
       <Route path='/user' component={User}></Route>
       <Route path='/register' component={Register}></Route>
-          <Route path='/test' component={User}></Route>
+      <Route path='/chat/:user'component={Chat}></Route>
       <Route component={Dashboard}></Route>
     </Switch>
     </div>

@@ -1,3 +1,4 @@
+// @flow
 import axios from 'axios'
 import {
   getRedirectPath
@@ -13,7 +14,7 @@ const initState = {
   user: '',
   type: ''
 }
-export function loadData(userinfo) {
+export function loadData(userinfo:any) {
   console.log('loadData2',userinfo)
   return {
     type: AUTH_SUCCESS,
@@ -23,8 +24,8 @@ export function loadData(userinfo) {
 export function logoutSubmit(){
   return {type:LOGOUT}
 }
-export function update(data) {
-  return dispatch => {
+export function update(data:any) {
+  return (dispatch:any) => {
     axios.post('/user/update', data)
       .then(res => {
         if (res.status === 200 && res.data.code === 0) {
@@ -36,7 +37,7 @@ export function update(data) {
   }
 }
 //reducer
-export function user(state = initState, action) {
+export function user(state:any = initState, action:any) {
   switch (action.type) {
     case AUTH_SUCCESS:
       return { ...state,
@@ -60,11 +61,11 @@ export function user(state = initState, action) {
 export function login({
   user,
   pwd
-}) {
+}:{user:string,pwd:string}) {
   if (!user || !pwd) {
     return errorMsg('用户名和密码必须输入')
   }
-  return dispatch => {
+  return (dispatch:Function) => {
     axios.post('/user/login', {
         user,
         pwd,
@@ -103,14 +104,14 @@ export function register({
   pwd,
   repeatpwd,
   type
-}) {
+}:{user:string,pwd:string,repeatpwd:string,type:string}) {
   if (!user || !pwd || !type) {
     return errorMsg('用户名密码必须输入')
   }
   if (pwd !== repeatpwd) {
     return errorMsg('密码和确认密码不同')
   }
-  return dispatch => {
+  return (dispatch:Function) => {
     axios.post('/user/register', {
         user,
         pwd,

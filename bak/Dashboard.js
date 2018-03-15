@@ -8,9 +8,6 @@ function Qibingliang(){
   return <h2>骑兵连</h2>
 }
 class DashBoard extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     return (
       <div>

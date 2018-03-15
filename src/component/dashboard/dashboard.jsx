@@ -7,10 +7,8 @@ import Boss from '../../component/boss/boss.jsx'
 import Genius from '../../component/genius/genius.jsx'
 import User from '../../component/user/user.jsx'
 import {getMsgList,recvMsg} from '../../redux/chat.redux'
+import Msg from '../msg/msg.jsx'
 
-function Msg() {
-  return (<h2>messge </h2>)
-}
 type Props={
   user:Object,
   getMsgList:Function,
@@ -22,8 +20,10 @@ type Props={
 })
 class Dashboard extends Component<Props> {
   componentDidMount(){
-    this.props.getMsgList()
-    this.props.recvMsg()
+    if(!this.props.chat.chatmsg.length){
+      this.props.getMsgList()
+      this.props.recvMsg()
+    }
   }
   render() {
     const {pathname} = this.props.location

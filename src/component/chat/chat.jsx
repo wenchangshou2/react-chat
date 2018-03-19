@@ -6,7 +6,7 @@ import {getMsgList,sendMsg,recvMsg} from '../../redux/chat.redux'
 
 const socket = io('ws://localhost:9093')
 @connect(
-  state=>state,
+  state=>({chat:state.get('chat'),user:state.get('user')}),
   {getMsgList,sendMsg,recvMsg}
 )
 class Chat extends React.Component {
@@ -20,7 +20,7 @@ class Chat extends React.Component {
   }
   handleSubmit() {
     // socket.emit('sendmsg', {text: this.state.text})
-    const from =this.props.user._id;
+    const from =this.props.user.get('_id')
     const to=this.props.match.params.user
     const msg=this.state.text
     this.props.sendMsg({from,to,msg})
@@ -30,6 +30,7 @@ class Chat extends React.Component {
   }
   render() {
     const user=this.props.match.params.user
+    let chat = this.props.chat
     const Item=List.Item
     return (
       <div id="chat-page">
@@ -37,8 +38,7 @@ class Chat extends React.Component {
         {this.props.match.params.user}
       </NavBar>
       {
-        this.props.chat.chatmsg.map(v => {
-          console.log('22',v,user)
+        chat.get('chatmsg').map(v => {
           return v.form===user?(
             <List key={v._id}
               >

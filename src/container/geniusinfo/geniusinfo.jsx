@@ -4,7 +4,7 @@ import AvatarSelector from '../../component/avatar-selector/auatar-selector.jsx'
 import {connect} from 'react-redux'
 import {Redirect} from 'react-router-dom'
 import {update} from '../../redux/user.redux'
-@connect(state => state.user, {update})
+@connect(state => ({ user: state.user }), { update })
 class GeniusInfo extends React.Component {
   constructor(props) {
     super(props)
@@ -17,11 +17,11 @@ class GeniusInfo extends React.Component {
   }
   render() {
     const path = this.props.location.pathname
-    const redirect=this.props.redirectTo
+    const redirect = this.props.user.get('redirectTo')
     return (<div>
       {
         redirect&&redirect!==path
-          ? <Redirect to={this.props.redirectTo}/>
+          ? <Redirect to={redirect}/>
           : null
       }
       <NavBar mode="dark">

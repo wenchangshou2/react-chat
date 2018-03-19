@@ -3,7 +3,7 @@ import {getUserList} from '../../redux/chatuser.redux'
 import {connect} from 'react-redux'
 import UserCard from '../userinfo/userinfo.jsx'
 
-@connect(state=>state.chatuser,
+@connect(state => ({ chatusr: state.chatuser }),
   {
     getUserList
   }
@@ -20,8 +20,7 @@ class Genius extends Component{
   }
   render(){
     return (
-        <UserCard userlist={this.props.userlist}></UserCard>
-
+        <UserCard userlist={this.props.chatuser.get('userlist')}></UserCard>
     )
   }
 }

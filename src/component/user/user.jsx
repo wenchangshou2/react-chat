@@ -4,7 +4,7 @@ import {Result, List, Modal, WhiteSpace} from 'antd-mobile'
 import {logoutSubmit} from '../../redux/user.redux'
 import {Redirect} from 'react-router-dom'
 const cookies = require('browser-cookies')
-@connect(state => state.user,{
+@connect(state => ({user:state.get('user')}),{
   logoutSubmit
 })
 class User extends React.Component {
@@ -34,23 +34,23 @@ class User extends React.Component {
     const Item = List.Item
     const props = this.props
     const Brief = Item.Brief
-
-    return props.user
+    const { redirectTo,money,title,desc,avatar, user, type, company } = this.props.user.toJS()
+    return user
       ? (
       <div>
         <Result img={<img src = {
-            require(`../img/${this.props.avatar}.png`)
+            require(`../img/${avatar}.png`)
           }
-          style = {{width:50}}alt = "" />} title={this.props.user} message={this.props.type === 'boss'
-            ? this.props.company
+          style = {{width:50}}alt = "" />} title={user} message={type === 'boss'
+            ? company
             : null}/>
         <List renderHeader={() => '简介'} platform="cross">
           <Item multipleLine={true}>
-            {props.title}
-            {props.desc.split('\n').map(v => <Brief key={v}>{v}</Brief>)}
+            {title}
+            {desc.split('\n').map(v => <Brief key={v}>{v}</Brief>)}
             {
-              props.money
-                ? <Brief >薪资:{props.money}</Brief>
+              money
+                ? <Brief >薪资:{money}</Brief>
                 : null
             }
 
@@ -62,7 +62,7 @@ class User extends React.Component {
           <Item onClick={this.logout}>退出登录</Item>
         </List>
       </div>)
-      : <Redirect to={props.redirectTo}/>
+      : <Redirect to={redirectTo}/>
   }
 
 }

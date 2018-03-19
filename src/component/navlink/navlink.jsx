@@ -6,8 +6,7 @@ import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 @withRouter
 @connect(
-	state=>state.chat,{
-
+	state=>({chat:state.chat}),{
 	}
 )
 class NavLinkBar extends React.Component{
@@ -15,7 +14,6 @@ class NavLinkBar extends React.Component{
 		data: PropTypes.array.isRequired
 	}
 	render(){
-
 		const navList = this.props.data.filter(v=>!v.hide)
 		const {pathname} = this.props.location
 		return (

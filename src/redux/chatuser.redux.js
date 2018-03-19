@@ -1,32 +1,32 @@
 // @flow
 import axios from 'axios'
+import { Map, List } from 'immutable';
 const USER_LIST = 'USER_LIST'
-const initState={
-  userlist:[],
-}
+const initState = Map({
+  userlist: List([]),
+})
 
-export function chatuser(state:{userlist:Array<any>}=initState,action:Object){
-  switch(action.type){
+export function chatuser(state = initState, action) {
+  switch (action.type) {
     case USER_LIST:
-      return {
-        ...state,
-        userlist:action.payload
-      }
-      default:
-        return state
+      return state.merge(
+        state.set('userlist', List(action.payload))
+      )
+    default:
+      return state
   }
 }
-function userList(data){
+function userList(data) {
   return {
-    type:USER_LIST,
-    payload:data
+    type: USER_LIST,
+    payload: data
   }
 }
-export function getUserList(type:string){
-  return (dispatch:Function)=>{
-    axios.get('/user/list?type='+type)
-      .then(res=>{
-        if(res.status===200){
+export function getUserList(type) {
+  return (dispatch) => {
+    axios.get('/user/list?type=' + type)
+      .then(res => {
+        if (res.status === 200) {
           // this.setState({data:res.data})
           dispatch(userList(res.data))
         }

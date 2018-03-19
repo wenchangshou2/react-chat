@@ -4,15 +4,11 @@ import {WingBlank,WhiteSpace,Card} from 'antd-mobile'
 import {withRouter} from 'react-router-dom'
 @withRouter
 class UserCard extends Component{
-  static propTypes={
-    userlist:PropTypes.array.isRequired
-  }
   constructor(props){
     super(props)
     this.handleClick=this.handleClick.bind(this)
   }
   handleClick(v){
-    console.log(this.props)
     this.props.history.push(`/chat/${v._id}`)
   }
   render(){
@@ -22,7 +18,6 @@ class UserCard extends Component{
       <WingBlank>
         <WhiteSpace></WhiteSpace>
         {this.props.userlist.map(v=>{
-          console.log(v,v.avatar);
           return v.avatar?(<Card
               key={v.user}
               onClick={()=>this.handleClick(v)}
@@ -38,7 +33,7 @@ class UserCard extends Component{
               {v.desc.split('\n').map(d=>(
                 <div key={d}>{d}</div>
               ))}
-              {v.type==='boss'?<div> 薪资:{v.money}</div>:null}
+              {v.type==='boss'&&v.money?<div> 薪资:{v.money}</div>:null}
             </Body>
           </Card>):null
         }

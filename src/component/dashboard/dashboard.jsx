@@ -9,25 +9,20 @@ import User from '../../component/user/user.jsx'
 import {getMsgList,recvMsg} from '../../redux/chat.redux'
 import Msg from '../msg/msg.jsx'
 
-type Props={
-  user:Object,
-  getMsgList:Function,
-  recvMsg:Function,
-  location:Object,
-}
-@connect(state => state,{
+@connect(state => ({ user: state.get('user'),chat:state.get('chat') }), {
   getMsgList,recvMsg
 })
-class Dashboard extends Component<Props> {
+class Dashboard extends Component {
   componentDidMount(){
-    if(!this.props.chat.chatmsg.length){
+    if (!this.props.chat.get('chatmsg').size) {
       this.props.getMsgList()
       this.props.recvMsg()
     }
   }
   render() {
     const {pathname} = this.props.location
-    let user = this.props.user
+    const user = this.props.user
+    const {type} =user.toJS()
     const navList = [
       {
         path: '/boss',
@@ -35,14 +30,14 @@ class Dashboard extends Component<Props> {
         icon: 'boss',
         title: '牛人列表',
         component: Boss,
-        hide: user.type === 'genius'
+        hide: type === 'genius'
       }, {
         path: '/genius',
         text: 'BOSS',
         icon: 'job',
         title: 'boss列表',
         component: Genius,
-        hide: user.type === 'boss'
+        hide: type === 'boss'
       }, {
         path: '/msg',
         text: '消息',
@@ -57,7 +52,6 @@ class Dashboard extends Component<Props> {
         component: User
       }
     ]
-    console.log('pathname', pathname)
     return (<div>
       <NavBar className='fixd-header' mode='dard'>{
           navList.find(v => v.path === pathname)

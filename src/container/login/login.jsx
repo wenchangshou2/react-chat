@@ -4,7 +4,7 @@ import {List, InputItem, WingBlank, WhiteSpace, Button} from 'antd-mobile'
 import {connect} from 'react-redux'
 import {login} from '../../redux/user.redux'
 import {Redirect} from 'react-router-dom'
-@connect(state => state.user, {login})
+@connect(state =>  ({user: state.get('user')}) , { login })
 class Login extends React.Component {
   constructor(props) {
     super(props);
@@ -25,10 +25,12 @@ class Login extends React.Component {
     this.setState({[key]: val})
   }
   render() {
+    const user=this.props.user
+    const {redirectTo,msg}=user.toJS()
     return (<div>
       {
-        this.props.redirectTo&&this.props.redirectTo!=='/login'
-          ? <Redirect to={this.props.redirectTo}/>
+        redirectTo&&redirectTo!=='/login'
+          ? <Redirect to={redirectTo}/>
           : null
       }
       <Logo></Logo>
@@ -36,8 +38,8 @@ class Login extends React.Component {
       <WingBlank>
         <List>
           {
-            this.props.msg
-              ? <p className="error-msg">{this.props.msg}</p>
+            msg
+              ? <p className="error-msg">{msg}</p>
               : null
           }
           <InputItem onChange={v => this.handleChange('user', v)}>用户名</InputItem>

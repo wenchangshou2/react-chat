@@ -15,7 +15,6 @@ Router.get('/list', function(req, res) {
   })
 })
 Router.post('/register', function(req, res) {
-  console.log(req);
   const {
     user,
     pwd,
@@ -69,7 +68,6 @@ Router.post('/register', function(req, res) {
 })
 Router.get('/getmsglist',function(req,res){
   const user = req.cookies.userid
-  console.log('cookie',user)
   // Chat.find({'$or':[{from:user,to:user}]},function(err,doc){
   User.find({},function(e,userdoc){
     let users={}
@@ -99,7 +97,6 @@ Router.post('/update', function(req, res) {
   const {
     userid
   } = req.cookies
-  console.log(userid);
   if (!userid) {
     return res.json({
       code: 1

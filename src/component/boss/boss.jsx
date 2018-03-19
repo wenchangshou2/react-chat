@@ -3,7 +3,7 @@ import {getUserList} from '../../redux/chatuser.redux'
 import {connect} from 'react-redux'
 
 import UserCard from '../userinfo/userinfo.jsx'
-@connect(state=>state.chatuser,
+@connect(state => ({ chatuser: state.get('chatuser') }),
   {
       getUserList
   }
@@ -19,9 +19,8 @@ class Boss extends Component{
     this.props.getUserList('genius')
   }
   render(){
-    console.log(this.state)
     return (
-      <UserCard userlist={this.props.userlist}></UserCard>
+      <UserCard userlist={this.props.chatuser.get('userlist')}></UserCard>
     )
   }
 }

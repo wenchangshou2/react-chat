@@ -15,7 +15,7 @@ import Register from './container/register/register.jsx'
 import AuthRoute from './component/authroute/authroute.jsx'
 import BossInfo from './container/bossinfo/bossinfo.jsx'
 import GeniusInfo from './container/geniusinfo/geniusinfo.jsx'
-import Dashboard from './container/dashboard/dashboard.jsx'
+import Dashboard from './component/dashboard/dashboard.jsx'
 import User from './component/user/user.jsx'
 import Chat from './component/chat/chat.jsx'
 import reducers from './reducer';

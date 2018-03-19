@@ -1,34 +1,34 @@
 .error-msg {
-  color: #f50;
-  padding-left: 10px;
+    color: #f50;
+    padding-left: 10px;
+    padding-top: 10px;
 }
 
-.am-tab-bar{
-  position: fixed;
-  bottom:0;
-  width:100%;
-  z-index: -999;
-}
-.fixd-header.am-navbar{
-	position: fixed;
-	top: 0;
-	width: 100%;
+.am-tab-bar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+    z-index: -999;
 }
 
-.page-content{
-  padding:45px 5px;
+.fixd-header.am-navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
 }
 
-#chat-page .chat-me .am-list-extra{
-  flex-basis: auto;
+
+.stick-footer {
+    z-index: 10;
+    position: absolute;
+    bottom: 0;
+    width: 100%
 }
-#chat-page .chat-me .am-list-content{
-  padding-right:15px;
-  text-align: right;
+#chat-list .chat-me .am-list-extra{
+	flex-basis: auto;
 }
-.stick-footer{
-  z-index: 10;
-  position: absolute;
-  bottom:0;
-  width:100%
+#chat-list .chat-me .am-list-content{
+	padding-right: 15px;
+	text-align: right
 }

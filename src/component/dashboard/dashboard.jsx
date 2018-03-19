@@ -7,18 +7,17 @@ import Boss from '../../component/boss/boss.jsx'
 import Genius from '../../component/genius/genius.jsx'
 import User from '../../component/user/user.jsx'
 import {getMsgList,recvMsg} from '../../redux/chat.redux'
-function Msg(){
-  return (
-    <div>msg</div>
-  )
-}
-@connect(state => ({ user: state.get('user') }), {
+import Msg from '../msg/msg.jsx'
+
+@connect(state => ({ user: state.get('user'),chat:state.get('chat') }), {
   getMsgList,recvMsg
 })
 class Dashboard extends Component {
   componentDidMount(){
-    this.props.getMsgList()
-    this.props.recvMsg()
+    if (!this.props.chat.get('chatmsg').length) {
+      this.props.getMsgList()
+      this.props.recvMsg()
+    }
   }
   render() {
     const {pathname} = this.props.location

@@ -4,7 +4,7 @@ import {List, InputItem, WhiteSpace, Button, Radio} from 'antd-mobile'
 import {connect} from 'react-redux'
 import {Redirect} from 'react-router-dom'
 import {register} from '../../redux/user.redux'
-@connect(state => ({ user: state.user }), { register })
+@connect(state => ({ user: state.get('user') }), { register })
 class Register extends React.Component {
   constructor(props) {
     super(props)

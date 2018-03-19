@@ -36,6 +36,10 @@ class Chat extends React.Component {
     this.props.sendMsg({ from, to, msg })
     this.setState({ text: '', showEmoji: false })
   }
+  componentDidMount(){
+    const to = this.props.match.params.user
+    this.props.readMsg(to)
+  }
   fixCarousel() {
     setTimeout(function () {
       window.dispatchEvent(new Event('resize'))

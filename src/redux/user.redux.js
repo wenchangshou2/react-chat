@@ -1,6 +1,6 @@
 // @flow
 import axios from 'axios'
-import { List, Map } from 'immutable';
+import {  Map } from 'immutable';
 import {
   getRedirectPath
 } from '../util'

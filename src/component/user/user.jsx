@@ -11,8 +11,6 @@ class User extends React.Component {
   constructor(props) {
     super(props)
     this.logout = this.logout.bind(this)
-    this.state = {}
-
   }
 
   logout(e) {
@@ -35,7 +33,6 @@ class User extends React.Component {
     const props = this.props
     const Brief = Item.Brief
     const { redirectTo,money,title,desc,avatar, user, type, company } = this.props.user.toJS()
-    console.log('user',user)
     return user
       ? (
       <div>

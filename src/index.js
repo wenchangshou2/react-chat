@@ -5,9 +5,7 @@ import { Provider } from 'react-redux'
 import {
   BrowserRouter,
   Route,
-  Link,
   Switch,
-  Redirect
 } from 'react-router-dom'
 import './index.css'
 import Login from './container/login/login.jsx'

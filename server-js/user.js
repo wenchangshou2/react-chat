@@ -110,7 +110,7 @@ Router.post('/update', function(req, res) {
     }, body)
     return res.json({
       code:0,
-      data
+      data: data
     })
   })
 })

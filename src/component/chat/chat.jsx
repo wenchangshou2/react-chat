@@ -22,6 +22,7 @@ class Chat extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
   componentDidMount() {
+    console.log('user',this.props.user.toJS())
     if (!this.props.chat.get('chatmsg').size) {
       this.props.getMsgList()
       this.props.recvMsg()
@@ -31,9 +32,11 @@ class Chat extends React.Component {
   }
   handleSubmit() {
     // socket.emit('sendmsg', {text: this.state.text})
+    console.log('user2',this.props.user.toJS())
     const from = this.props.user.get('_id')
     const to = this.props.match.params.user
     const msg = this.state.text
+    console.log('sendmsg',from,to,msg,this.props.user.toJS())
     this.props.sendMsg({ from, to, msg })
     this.setState({ text: '', showEmoji: false })
   }

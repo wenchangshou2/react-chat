@@ -48,7 +48,7 @@ export function user(state = initState, action) {
         pwd:''
       })
     case LOGOUT:
-      return state.merge({
+      return Map({
         redirectTo:'/login'
       })
     case ERROR_MSG:

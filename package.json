@@ -5,6 +5,7 @@
   "dependencies": {
     "@types/morgan": "^1.7.35",
     "antd-mobile": "^2.1.6",
+    "antd-mobile-demo-data": "^0.2.0",
     "autoprefixer": "7.1.6",
     "axios": "^0.18.0",
     "babel-core": "6.26.0",
@@ -46,6 +47,7 @@
     "pug": "^2.0.1",
     "q": "^1.5.1",
     "raf": "3.4.0",
+    "rc-form": "^2.1.7",
     "react": "^16.2.0",
     "react-dev-utils": "^5.0.0",
     "react-dom": "^16.2.0",

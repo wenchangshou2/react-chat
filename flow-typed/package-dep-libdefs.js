@@ -4,6 +4,10 @@ declare module '@types/morgan' {
   declare module.exports: any;
 }
 
+declare module 'antd-mobile-demo-data' {
+  declare module.exports: any;
+}
+
 declare module 'errorhandler' {
   declare module.exports: any;
 }
@@ -29,6 +33,10 @@ declare module 'pug' {
 }
 
 declare module 'q' {
+  declare module.exports: any;
+}
+
+declare module 'rc-form' {
   declare module.exports: any;
 }
 

@@ -2,15 +2,17 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Result, List, Modal, WhiteSpace} from 'antd-mobile'
 import {logoutSubmit} from '../../redux/user.redux'
-import {Redirect} from 'react-router-dom'
+import { Redirect, withRouter } from "react-router-dom";
 const cookies = require('browser-cookies')
 @connect(state => ({user:state.get('user')}),{
   logoutSubmit
 })
+@withRouter
 class User extends React.Component {
   constructor(props) {
     super(props)
-    this.logout = this.logout.bind(this)
+    this.logout = this.logout.bind(this);
+    this.intention = this.intention.bind(this);
   }
 
   logout(e) {
@@ -25,42 +27,36 @@ class User extends React.Component {
       }},
     ])
   }
+  intention(e){
+    this.props.history.push('/intention')
+  }
   handleClickOnTitle() {
     console.log('Click on title.')
   }
+
   render() {
     const Item = List.Item
     const props = this.props
     const Brief = Item.Brief
     const { redirectTo,money,title,desc,avatar, user, type, company } = this.props.user.toJS()
-    return user
-      ? (
-      <div>
-        <Result img={<img src = {
-            require(`../img/${avatar}.png`)
-          }
-          style = {{width:50}}alt = "" />} title={user} message={type === 'boss'
-            ? company
-            : null}/>
-        <List renderHeader={() => '简介'} platform="cross">
+    return user ? <div>
+        <Result img={<img src={require(`../img/${avatar}.png`)} style={{ width: 50 }} alt="" />} title={user} message={type === "boss" ? company : null} />
+        <List renderHeader={() => "简介"} platform="cross">
           <Item multipleLine={true}>
             {title}
-            {desc.split('\n').map(v => <Brief key={v}>{v}</Brief>)}
-            {
-              money
-                ? <Brief >薪资:{money}</Brief>
-                : null
-            }
-
+            {desc.split("\n").map(v => <Brief key={v}>{v}</Brief>)}
+            {money ? <Brief>薪资:{money}</Brief> : null}
           </Item>
-
         </List>
-        <WhiteSpace></WhiteSpace>
+        <WhiteSpace />
+        <List>
+          <Item onClick={this.intention}>求职意向</Item>
+        </List>
+        <WhiteSpace />
         <List>
           <Item onClick={this.logout}>退出登录</Item>
         </List>
-      </div>)
-      : <Redirect to={redirectTo}/>
+      </div> : <Redirect to={redirectTo} />;
   }
 
 }
